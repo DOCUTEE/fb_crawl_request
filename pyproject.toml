@@ -1,6 +1,6 @@
 [project]
-name = "fb_scraper_request"
-version = "0.2.5"
+name = "whatisfacebook"
+version = "0.1.4"
 description = "Facebook GraphQL Scraper - No login required, simple API to scrape public Facebook posts"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -26,6 +26,7 @@ dependencies = [
     "pytz",
     "pip>=26.0.1",
     "beautifulsoup4>=4.12.0",
+    "loguru>=0.7.3",
 ]
 
 [project.optional-dependencies]
@@ -45,4 +46,4 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["fb_scraper_request*"]
+include = ["whatisfacebook*"]

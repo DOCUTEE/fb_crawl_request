@@ -1,4 +1,4 @@
-# fb_scraper_request
+# whatisfacebook
 
 Scrape public Facebook posts without login using a simple, requests-based scraper.
 
@@ -12,13 +12,13 @@ This project is a streamlined fork developed from the foundational work at [Faus
 ## Install
 
 ```bash
-pip install fb_scraper_request
+pip install whatisfacebook
 ```
 
 ## Quick Example
 
 ```python
-from fb_scraper_request import FacebookGraphqlScraper
+from whatisfacebook import FacebookGraphqlScraper
 
 # Initialize the scraper
 fb = FacebookGraphqlScraper()
@@ -27,8 +27,10 @@ fb = FacebookGraphqlScraper()
 result = fb.get_user_posts("honghotduongpho.official00", days_limit=3)
 
 for post in result["data"]:
-    print(f"Content: {post['context']}")
-    print(f"Likes: {post['reaction_count.count']}")
+    print(f"Content: {post['content']}")
+    print(f"Likes: {post['reaction_count']}")
+    print(f"Shares: {post['share_count']}")
+    print(f"Comments: {post['comment_count']}")
     print("-" * 20)
 ```
 
@@ -36,39 +38,44 @@ for post in result["data"]:
 The result object returns a structured dictionary containing profile info and a list of post data:
 ```json
 {
-"fb_username_or_userid": "100063640556423",
-    "profile": [
-        "Life at VNG | Ho Chi Minh City"
-    ],
+    "fb_username_or_userid": "Theanh28",
+    "profile": ["Theanh28 Entertainment | Hanoi"],
     "data": [
         {
-            "post_id": "1601334011997935",
-            "post_url": "https://www.facebook.com/1601334011997935",
-            "username_or_userid": "100063640556423",
-            "owing_profile": {
-                "__typename": "User",
-                "name": "Life at VNG",
-                "short_name": "Life at VNG",
-                "id": "100063640556423"
-            },
-            "published_date": "2026-03-28T11:58:04",
-            "published_date2": "2026-03-28",
-            "time": 1774673884,
-            "reaction_count.count": 16,
-            "comment_rendering_instance.comments.total_count": null,
-            "share_count.count": null,
-            "sub_reactions": {
-                "Thích": 10,
-                "Yêu thích": 5,
-                "Wow": 1
-            },
-            "context": "[HÀ NỘI] BUSINESS DEVELOPMENT FRESHER 2026 “BẬT ĐỊNH VỊ” HẸN GẶP SINH VIÊN THỦ ĐÔ 📍\n✨ Ứng tuyển Business Development Fresher 2026 tại: https://bit.ly/4rRnqaG \n\nBusiness Development Fresher 2026 (BDF 2026) - chương trình tuyển chọn và phát triển thế hệ Business Development tiềm năng của VNG ZingPlay Game Studios đã sẵn sàng gặp gỡ và giao lưu cùng các bạn sinh viên Hà Nội.\n\n👉 Nếu bạn đam mê khám phá thị trường Game,...",
-            "video_view_count": null
-        },
-        ...
-    ],
-    "raw_data": [
-        <raw_facebook_meta_response>
+            "post_id": "1280910250890741",
+            "post_url": "https://www.facebook.com/1280910250890741",
+            "profile_name": "Theanh28 Entertainment",
+            "profile_short_name": "Theanh28 Entertainment",
+            "profile_id": "100069153349307",
+            "profile_url": "https://www.facebook.com/100069153349307",
+            "permalink": "https://www.facebook.com/reel/2132682674109999/",
+            "content": "Đâu sẽ là phù hợp nhất ",
+            "hashtags": [],
+            "post_type": "StoryAttachmentVideoStyleRenderer",
+            "number_of_media": 1,
+            "media_items": [
+                {
+                    "id": "2132682674109999",
+                    "type": "Video",
+                    "thumbnail_url": "https://scontent.fsgn2-5.fna.fbcdn.net/...",
+                    "video_url": "https://video.fsgn2-8.fna.fbcdn.net/..."
+                }
+            ],
+            "creation_time": 1776095067,
+            "published_at": "2026-04-13T22:44:27",
+            "published_date": "2026-04-13",
+            "reaction_count": 976,
+            "share_count": 10,
+            "comment_count": 39,
+            "sub_reactions": [
+                {"id": "1635855486666999", "name": "Thích", "reaction_count": 598},
+                {"id": "115940658764963", "name": "Haha", "reaction_count": 362},
+                {"id": "1678524932434102", "name": "Yêu thích", "reaction_count": 9},
+                {"id": "908563459236466", "name": "Buồn", "reaction_count": 4},
+                {"id": "478547315650144", "name": "Wow", "reaction_count": 2},
+                {"id": "613557422527858", "name": "Thương thương", "reaction_count": 1}
+            ]
+        }
     ]
 }
 ```
